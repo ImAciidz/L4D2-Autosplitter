@@ -273,7 +273,7 @@ init
 		{
 			if(vars.Version2209=="2.2.0.9")
 				version="2.2.0.9";
-			else if(vars.Version2203=="2.2.0.7")
+			else if(vars.Version2207=="2.2.0.7")
 				version="2.2.0.7";
 			else if(vars.Version2203=="2.2.0.3")
 				version="2.2.0.3";
