@@ -120,6 +120,19 @@ state("left4dead2", "2.1.4.7")
 	bool     hasControl       : "client.dll", 0x7962CC;
 }
 
+state("left4dead2", "2.1.5.X")
+{
+	string32 whatsLoading     : "engine.dll", 0x604A80;
+	bool     gameLoading      : "engine.dll", 0x46C54C;
+	bool     cutscenePlaying1 : "client.dll", 0x703D78;
+	bool     cutscenePlaying2 : "client.dll", 0x703C64;
+	bool     finaleTrigger1   : "client.dll", 0x788AD8;
+	bool     finaleTrigger2   : "client.dll", 0x788E14;
+	bool     scoreboardLoad1  : "client.dll", 0x796215;
+	bool     scoreboardLoad2  : "client.dll", 0x776AB5;
+	bool     hasControl       : "client.dll", 0x7972CC;
+}
+
 state("left4dead2", "2.2.0.3")
 {
 	string32 whatsLoading     : "engine.dll", 0x435240;
@@ -144,19 +157,6 @@ state("left4dead2", "2.2.0.7")
 	bool     scoreboardLoad1  : "client.dll", 0x782EA5;
 	bool     scoreboardLoad2  : "client.dll", 0x7A2665;
 	bool     hasControl       : "client.dll", 0x73421C;
-}
-
-state("left4dead2", "2.2.0.9")
-{
-	string32 whatsLoading     : "engine.dll", 0x435240;
-	bool     gameLoading      : "engine.dll", 0x47264C;
-	bool     cutscenePlaying1 : "client.dll", 0x70F884;
-	bool     cutscenePlaying2 : "client.dll", 0x70F998;
-	bool     finaleTrigger1   : "client.dll", 0x7952A4;
-	bool     finaleTrigger2   : "client.dll", 0x794F68;
-	bool     scoreboardLoad1  : "client.dll", 0x782F25;
-	bool     scoreboardLoad2  : "client.dll", 0x7A29C5;
-	bool     hasControl       : "client.dll", 0x73429C;
 }
 
 startup
@@ -202,10 +202,8 @@ startup
 	settings.SetToolTip("version2147", "Crash Course and The Sacrifice ILs, comparable to L4D2 pre TLS update");
 	settings.Add("version2203", false, "Version 2.2.0.3", "version2147");
 	settings.SetToolTip("version2203", "The Last Stand Solo ER and Co-Op");
-	settings.Add("version2207", false, "Version 2.2.0.8", "version2203");
-	settings.SetToolTip("version2207", "Older RocketDude mutation version");
-	settings.Add("version2209", false, "Version 2.2.0.9", "version2207");
-	settings.SetToolTip("version2209", "Newest as of Dec 8th 2020");
+	settings.Add("version2206", false, "Version 2.2.0.6", "version2203");
+	settings.SetToolTip("version2206", "Newest as of Nov 4th 2020");
 
 	
 	settings.Add("debug", false, "See internal values through DebugView");
@@ -225,7 +223,6 @@ init
 	
 	print("Game main module size is " + modules.First().ModuleMemorySize.ToString());
 	
-	vars.Version2209= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
 	vars.Version2207= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
 	vars.Version2203= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
 	vars.Version2147= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x694D28, 7);
@@ -241,9 +238,7 @@ init
 	print("Looking for game version...");
 	if(settings["alternateVersionCheck"])
 	{
-		if(settings["version2209"])
-			version="2.2.0.9";
-		else if(settings["version2207"])
+		if(settings["version2207"])
 			version="2.2.0.7";
 		else if(settings["version2203"])
 			version="2.2.0.3";
@@ -271,9 +266,7 @@ init
 	{
 		if(vars.CurrentVersion=="")
 		{
-			if(vars.Version2208=="2.2.0.9")
-				version="2.2.0.9";
-			else if(vars.Version2203=="2.2.0.7")
+			if(vars.Version2207=="2.2.0.7")
 				version="2.2.0.7";
 			else if(vars.Version2203=="2.2.0.3")
 				version="2.2.0.3";
@@ -310,7 +303,7 @@ init
 	vars.campaignsCompleted=0;
 	if(settings["allCampaigns"])
 		vars.totalCampaignNumber=14;
-	else if (settings["allCampaignsLegacy"])
+	else if (settings["AllCampaignsLegacy"])
 		vars.totalCampaignNumber=13;
 	else if (settings["mainCampaigns"])
 		vars.totalCampaignNumber=5;

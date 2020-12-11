@@ -120,6 +120,45 @@ state("left4dead2", "2.1.4.7")
 	bool     hasControl       : "client.dll", 0x7962CC;
 }
 
+state("left4dead2", "2.1.5.X")
+{
+	string32 whatsLoading     : "engine.dll", 0x604A80;
+	bool     gameLoading      : "engine.dll", 0x46C54C;
+	bool     cutscenePlaying1 : "client.dll", 0x703D78;
+	bool     cutscenePlaying2 : "client.dll", 0x703C64;
+	bool     finaleTrigger1   : "client.dll", 0x788AD8;
+	bool     finaleTrigger2   : "client.dll", 0x788E14;
+	bool     scoreboardLoad1  : "client.dll", 0x796215;
+	bool     scoreboardLoad2  : "client.dll", 0x776AB5;
+	bool     hasControl       : "client.dll", 0x7972CC;
+}
+
+state("left4dead2", "2.2.0.1")
+{
+	string32 whatsLoading     : "engine.dll", 0x435240;
+	bool     gameLoading      : "engine.dll", 0x47264C;
+	bool     cutscenePlaying1 : "client.dll", 0x70E804;
+	bool     cutscenePlaying2 : "client.dll", 0x70E918;
+	bool     finaleTrigger1   : "client.dll", 0x793E10;
+	bool     finaleTrigger2   : "client.dll", 0x79414C;
+	bool     scoreboardLoad1  : "client.dll", 0x781DD5;
+	bool     scoreboardLoad2  : "client.dll", 0x7A158D;
+	bool     hasControl       : "client.dll", 0x73321C;
+}
+
+state("left4dead2", "2.2.0.2")
+{
+	string32 whatsLoading     : "engine.dll", 0x435240;
+	bool     gameLoading      : "engine.dll", 0x47264C;
+	bool     cutscenePlaying1 : "client.dll", 0x70F804;
+	bool     cutscenePlaying2 : "client.dll", 0x70F918;
+	bool     finaleTrigger1   : "client.dll", 0x794D88;
+	bool     finaleTrigger2   : "client.dll", 0x7950C4;
+	bool     scoreboardLoad1  : "client.dll", 0x782D45;
+	bool     scoreboardLoad2  : "client.dll", 0x7A2505;
+	bool     hasControl       : "client.dll", 0x73421C;
+}
+
 state("left4dead2", "2.2.0.3")
 {
 	string32 whatsLoading     : "engine.dll", 0x435240;
@@ -133,7 +172,7 @@ state("left4dead2", "2.2.0.3")
 	bool     hasControl       : "client.dll", 0x73421C;
 }
 
-state("left4dead2", "2.2.0.7")
+state("left4dead2", "2.2.0.3 v2")
 {
 	string32 whatsLoading     : "engine.dll", 0x435240;
 	bool     gameLoading      : "engine.dll", 0x47264C;
@@ -146,17 +185,17 @@ state("left4dead2", "2.2.0.7")
 	bool     hasControl       : "client.dll", 0x73421C;
 }
 
-state("left4dead2", "2.2.0.9")
+state("left4dead2", "2.2.0.4")
 {
 	string32 whatsLoading     : "engine.dll", 0x435240;
 	bool     gameLoading      : "engine.dll", 0x47264C;
-	bool     cutscenePlaying1 : "client.dll", 0x70F884;
-	bool     cutscenePlaying2 : "client.dll", 0x70F998;
-	bool     finaleTrigger1   : "client.dll", 0x7952A4;
-	bool     finaleTrigger2   : "client.dll", 0x794F68;
-	bool     scoreboardLoad1  : "client.dll", 0x782F25;
-	bool     scoreboardLoad2  : "client.dll", 0x7A29C5;
-	bool     hasControl       : "client.dll", 0x73429C;
+	bool     cutscenePlaying1 : "client.dll", 0x70F804;
+	bool     cutscenePlaying2 : "client.dll", 0x70F918;
+	bool     finaleTrigger1   : "client.dll", 0x795224;
+	bool     finaleTrigger2   : "client.dll", 0x794EE8;
+	bool     scoreboardLoad1  : "client.dll", 0x782EA5;
+	bool     scoreboardLoad2  : "client.dll", 0x7A2665;
+	bool     hasControl       : "client.dll", 0x73421C;
 }
 
 startup
@@ -185,27 +224,22 @@ startup
 	settings.Add("version2000", false, "Version 2.0.0.0", "alternateVersionCheck");
 	settings.SetToolTip("version2000", "Make sure to check all the checkboxes above the game version you wanna run");
 	settings.Add("version2008", false, "Version 2.0.0.8", "version2000");
-	settings.SetToolTip("version2008", "Deprecated alternative to 2.0.0.0, no longer used");
 	settings.Add("version2012", false, "Version 2.0.1.2", "version2008");
-	settings.SetToolTip("version2012", "The Passing ILs");
 	settings.Add("version2027", false, "Version 2.0.2.7", "version2012");
-	settings.SetToolTip("version2027", "Deprecated alternative to 2045, no longer used");
 	settings.Add("version2045", false, "Version 2.0.4.5", "version2027");
-	settings.SetToolTip("version2045", "Main Campaigns Co-Op & No Mercy ILs");
 	settings.Add("version2063", false, "Version 2.0.6.3", "version2045");
-	settings.SetToolTip("version2063", "Oldest Cold Stream Beta, currently not a usable version in runs");
 	settings.Add("version2075", false, "Version 2.0.7.5", "version2063");
-	settings.SetToolTip("version2075", "Dead Air & Cold Stream ILs");
 	settings.Add("version2091", false, "Version 2.0.9.1", "version2075");
-	settings.SetToolTip("version2091", "All Campaigns Legacy");
 	settings.Add("version2147", false, "Version 2.1.4.7", "version2091");
-	settings.SetToolTip("version2147", "Crash Course and The Sacrifice ILs, comparable to L4D2 pre TLS update");
-	settings.Add("version2203", false, "Version 2.2.0.3", "version2147");
-	settings.SetToolTip("version2203", "The Last Stand Solo ER and Co-Op");
-	settings.Add("version2207", false, "Version 2.2.0.8", "version2203");
-	settings.SetToolTip("version2207", "Older RocketDude mutation version");
-	settings.Add("version2209", false, "Version 2.2.0.9", "version2207");
-	settings.SetToolTip("version2209", "Newest as of Dec 8th 2020");
+	settings.Add("version215x", false, "Version 2.1.5.x", "version2147");
+	settings.Add("version2201", false, "Version 2.2.0.1", "version215x");
+	settings.SetToolTip("version2201", "Will be removed once it is determined that this version has no use.");
+	settings.Add("version2202", false, "Version 2.2.0.2", "version2201");
+	settings.SetToolTip("version2202", "Will be removed once it is determined that this version has no use.");
+	settings.Add("version2203", false, "Version 2.2.0.3", "version2202");
+	settings.Add("version2203v2", false, "Version 2.2.0.3 v2", "version2203");
+	settings.SetToolTip("version2203v2", "Select this if you are using the version released on October 14th 2020. Will be removed once it is determined that this version has no use.");
+	settings.Add("version2204", false, "Version 2.2.0.4", "version2203v2");
 
 	
 	settings.Add("debug", false, "See internal values through DebugView");
@@ -225,9 +259,11 @@ init
 	
 	print("Game main module size is " + modules.First().ModuleMemorySize.ToString());
 	
-	vars.Version2209= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
-	vars.Version2207= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
+	vars.Version2204= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
 	vars.Version2203= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
+	vars.Version2202= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
+	vars.Version2201= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
+	vars.Version215x= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x694D28, 6);
 	vars.Version2147= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x694D28, 7);
 	vars.Version2091= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x404EF8, 7);
 	vars.Version2075= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x404EF8, 7);
@@ -241,12 +277,18 @@ init
 	print("Looking for game version...");
 	if(settings["alternateVersionCheck"])
 	{
-		if(settings["version2209"])
-			version="2.2.0.9";
-		else if(settings["version2207"])
-			version="2.2.0.7";
+		if(settings["version2204"])
+			version="2.2.0.4";
+		else if(settings["version2203v2"])
+			version="2.2.0.3 v2";
 		else if(settings["version2203"])
 			version="2.2.0.3";
+		else if(settings["version2202"])
+			version="2.2.0.2";
+		else if(settings["version2201"])
+			version="2.2.0.1";
+		else if(settings["version215x"])
+			version="2.1.5.X";
 		else if(settings["version2147"])
 			version="2.1.4.7";
 		else if(settings["version2091"])
@@ -271,12 +313,16 @@ init
 	{
 		if(vars.CurrentVersion=="")
 		{
-			if(vars.Version2208=="2.2.0.9")
-				version="2.2.0.9";
-			else if(vars.Version2203=="2.2.0.7")
-				version="2.2.0.7";
+			if(vars.Version2203=="2.2.0.4")
+				version="2.2.0.4";
 			else if(vars.Version2203=="2.2.0.3")
 				version="2.2.0.3";
+			else if(vars.Version2202=="2.2.0.2")
+				version="2.2.0.2";
+			else if(vars.Version2201=="2.2.0.1")
+				version="2.2.0.1";
+			else if(vars.Version215x=="2.1.5.")
+				version="2.1.5.X";
 			else if(vars.Version2147=="2.1.4.7")
 				version="2.1.4.7";
 			else if(vars.Version2091=="2.0.9.1")
@@ -310,7 +356,7 @@ init
 	vars.campaignsCompleted=0;
 	if(settings["allCampaigns"])
 		vars.totalCampaignNumber=14;
-	else if (settings["allCampaignsLegacy"])
+	else if (settings["AllCampaignsLegacy"])
 		vars.totalCampaignNumber=13;
 	else if (settings["mainCampaigns"])
 		vars.totalCampaignNumber=5;
@@ -396,7 +442,7 @@ split
 			print("Split on finale");
 			return true;
 		}
-		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port" || current.whatsLoading == "c13m4_cutthroatcreek"))
+		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port"))
 		{
 			print("Split on THE BEST CAMPAIGN EVER");
 			return true;
@@ -432,7 +478,7 @@ split
 			vars.campaignsCompleted++;
 			print("Campaign count is now " + vars.campaignsCompleted.ToString());
 		}
-		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port"  || current.whatsLoading == "c13m4_cutthroatcreek"))
+		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port"))
 		{
 			vars.campaignsCompleted++;
 			print("Finished THE BEST CAMPAIGN EVER and the campaign sum is now " + vars.campaignsCompleted.ToString());
