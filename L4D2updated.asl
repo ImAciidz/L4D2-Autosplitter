@@ -324,9 +324,7 @@ init
 	
 	vars.startRun=false;
 	vars.cutsceneStart = DateTime.MaxValue;
-	vars.c5m5_bridgeSplit = false;
-	vars.c6m3_portSplit = false;
-	vars.c7m3_portSplit = false;
+	vars.lastSplit=null;
 }
 
 start
@@ -340,9 +338,7 @@ start
 			{
 				print("CUSTSCENE RAN FOR " + (DateTime.Now - vars.cutsceneStart));
 				vars.cutsceneStart = DateTime.MaxValue;
-				vars.c5m5_bridgeSplit = false;
-				vars.c6m3_portSplit = false;
-				vars.c7m3_portSplit = false;
+				vars.lastSplit=null;
 				return true;
 			}
 			else if (!settings["cutscenelessStart"] && vars.cutsceneStart != DateTime.MaxValue)
@@ -374,9 +370,7 @@ start
 		{
 			vars.startRun=false;
 			print("Run autostarted");
-			vars.c5m5_bridgeSplit = false;
-			vars.c6m3_portSplit = false;
-			vars.c7m3_portSplit = false;
+			vars.lastSplit=null;
 			return true;
 		}
 		
@@ -390,9 +384,7 @@ start
 		{
 			vars.startRun=false;
 			print("Run autostarted");
-			vars.c5m5_bridgeSplit = false;
-			vars.c6m3_portSplit = false;
-			vars.c7m3_portSplit = false;
+			vars.lastSplit=null;
 			return true;
 		}
 	}
@@ -405,31 +397,24 @@ split
 	{
 		if((current.finaleTrigger1 || current.finaleTrigger2) && !old.finaleTrigger1 && !old.finaleTrigger2)
 		{
-			if(current.whatsLoading == "c5m5_bridge" && vars.c5m5_bridgeSplit == true)
+			if(current.whatsLoading == vars.lastSplit)
 			{
+				print("Ceased double split attempt");
 				return false;
 			}
 			print("Split on finale");
+			vars.lastSplit = current.whatsLoading;
 			return true;
 		}
-		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (((current.whatsLoading == "c7m3_port") && vars.c7m3_portSplit == false) || ((current.whatsLoading == "c5m5_bridge") && vars.c5m5_bridgeSplit == false) || ((current.whatsLoading == "c6m3_port") && vars.c6m3_portSplit == false)  || current.whatsLoading == "c13m4_cutthroatcreek"))
+		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port" || current.whatsLoading == "c13m4_cutthroatcreek"))
 		{
+			if(current.whatsLoading == vars.lastSplit)
+			{
+				print("Ceased double split attempt");
+				return false;
+			}
 			print("Split on THE BEST CAMPAIGN EVER");
-			if(current.whatsLoading == "c5m5_bridge")
-			{
-				vars.c5m5_bridgeSplit = true;
-				return true;
-			}
-			else if(current.whatsLoading == "c6m3_port")
-			{
-				vars.c6m3_portSplit = true;
-				return true;
-			}
-			else if(current.whatsLoading == "c7m3_port")
-			{
-				vars.c7m3_portSplit = true;
-				return true;
-			}
+			vars.lastSplit = current.whatsLoading;
 			return true;
 		}
 		//Split inbetween chapters
@@ -440,6 +425,7 @@ split
 				if(!current.finaleTrigger1 && !current.finaleTrigger2 && !old.scoreboardLoad1 && !old.scoreboardLoad2 && (current.scoreboardLoad1 || current.scoreboardLoad2))
 				{
 					print("Split at the end of a chapter at the scoreboard");
+					vars.lastSplit = current.whatsLoading; // should help prevent finale split failure if user's timer doesn't start automatically
 					return true;
 				}
 			}
@@ -448,6 +434,7 @@ split
 				if(!current.finaleTrigger1 && !current.finaleTrigger2 && !old.gameLoading && current.gameLoading && (current.scoreboardLoad1 || current.scoreboardLoad2))
 				{
 					print("Split at the end of a chapter when it began to load");
+					vars.lastSplit = current.whatsLoading; // should help prevent finale split failure if user's timer doesn't start automatically
 					return true;
 				}
 			}
@@ -460,11 +447,23 @@ split
 	{
 		if((current.finaleTrigger1 || current.finaleTrigger2) && !old.finaleTrigger1 && !old.finaleTrigger2)
 		{
+			if(current.whatsLoading == vars.lastSplit)
+			{
+				print("Ceased double split attempt");
+				return false;
+			}
+			vars.lastSplit = current.whatsLoading;
 			vars.campaignsCompleted++;
 			print("Campaign count is now " + vars.campaignsCompleted.ToString());
 		}
 		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port"  || current.whatsLoading == "c13m4_cutthroatcreek"))
 		{
+			if(current.whatsLoading == vars.lastSplit)
+			{
+				print("Ceased double split attempt");
+				return false;
+			}
+			vars.lastSplit = current.whatsLoading;
 			vars.campaignsCompleted++;
 			print("Finished THE BEST CAMPAIGN EVER and the campaign sum is now " + vars.campaignsCompleted.ToString());
 		}
