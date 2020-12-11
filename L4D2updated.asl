@@ -202,7 +202,7 @@ startup
 	settings.SetToolTip("version2147", "Crash Course and The Sacrifice ILs, comparable to L4D2 pre TLS update");
 	settings.Add("version2203", false, "Version 2.2.0.3", "version2147");
 	settings.SetToolTip("version2203", "The Last Stand Solo ER and Co-Op");
-	settings.Add("version2207", false, "Version 2.2.0.8", "version2203");
+	settings.Add("version2207", false, "Version 2.2.0.7", "version2203");
 	settings.SetToolTip("version2207", "Older RocketDude mutation version");
 	settings.Add("version2209", false, "Version 2.2.0.9", "version2207");
 	settings.SetToolTip("version2209", "Newest as of Dec 8th 2020");
@@ -271,7 +271,7 @@ init
 	{
 		if(vars.CurrentVersion=="")
 		{
-			if(vars.Version2208=="2.2.0.9")
+			if(vars.Version2209=="2.2.0.9")
 				version="2.2.0.9";
 			else if(vars.Version2203=="2.2.0.7")
 				version="2.2.0.7";
