@@ -324,6 +324,9 @@ init
 	
 	vars.startRun=false;
 	vars.cutsceneStart = DateTime.MaxValue;
+	vars.c5m5_bridgeSplit = false;
+	vars.c6m3_portSplit = false;
+	vars.c7m3_portSplit = false;
 }
 
 start
@@ -337,6 +340,9 @@ start
 			{
 				print("CUSTSCENE RAN FOR " + (DateTime.Now - vars.cutsceneStart));
 				vars.cutsceneStart = DateTime.MaxValue;
+				vars.c5m5_bridgeSplit = false;
+				vars.c6m3_portSplit = false;
+				vars.c7m3_portSplit = false;
 				return true;
 			}
 			else if (!settings["cutscenelessStart"] && vars.cutsceneStart != DateTime.MaxValue)
@@ -368,6 +374,9 @@ start
 		{
 			vars.startRun=false;
 			print("Run autostarted");
+			vars.c5m5_bridgeSplit = false;
+			vars.c6m3_portSplit = false;
+			vars.c7m3_portSplit = false;
 			return true;
 		}
 		
@@ -381,6 +390,9 @@ start
 		{
 			vars.startRun=false;
 			print("Run autostarted");
+			vars.c5m5_bridgeSplit = false;
+			vars.c6m3_portSplit = false;
+			vars.c7m3_portSplit = false;
 			return true;
 		}
 	}
@@ -393,12 +405,31 @@ split
 	{
 		if((current.finaleTrigger1 || current.finaleTrigger2) && !old.finaleTrigger1 && !old.finaleTrigger2)
 		{
+			if(current.whatsLoading == "c5m5_bridge" && vars.c5m5_bridgeSplit == true)
+			{
+				return false;
+			}
 			print("Split on finale");
 			return true;
 		}
-		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (current.whatsLoading == "c7m3_port" || current.whatsLoading == "c5m5_bridge" || current.whatsLoading == "c6m3_port" || current.whatsLoading == "c13m4_cutthroatcreek"))
+		else if((current.cutscenePlaying1 || current.cutscenePlaying2) && !old.cutscenePlaying1 && !old.cutscenePlaying2 && (((current.whatsLoading == "c7m3_port") && vars.c7m3_portSplit == false) || ((current.whatsLoading == "c5m5_bridge") && vars.c5m5_bridgeSplit == false) || ((current.whatsLoading == "c6m3_port") && vars.c6m3_portSplit == false)  || current.whatsLoading == "c13m4_cutthroatcreek"))
 		{
 			print("Split on THE BEST CAMPAIGN EVER");
+			if(current.whatsLoading == "c5m5_bridge")
+			{
+				vars.c5m5_bridgeSplit = true;
+				return true;
+			}
+			else if(current.whatsLoading == "c6m3_port")
+			{
+				vars.c6m3_portSplit = true;
+				return true;
+			}
+			else if(current.whatsLoading == "c7m3_port")
+			{
+				vars.c7m3_portSplit = true;
+				return true;
+			}
 			return true;
 		}
 		//Split inbetween chapters
