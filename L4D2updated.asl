@@ -161,6 +161,7 @@ state("left4dead2", "2.2.1.2")
 
 startup
 {
+	settings.Add("AutomaticGameTime", true, "Automatically set splits to Game Time");
 	settings.Add("campaignSplit", true, "Split after each campaign");
 	settings.Add("chapterSplit", true, "Split inbetween chapters", "campaignSplit");
 	settings.Add("scoreboardVSgameLoading", true, "Split chapters on Scoreboard vs Game Loading", "chapterSplit");
@@ -217,21 +218,6 @@ startup
 	
 	vars.CurrentVersion="";
 	refreshRate=30;
-	if (timer.CurrentTimingMethod == TimingMethod.RealTime) // stolen from cod games, which was apparently stolen from dude simulator 3, basically asks the runner to set their livesplit to game time
-	{        
-	var timingMessage = MessageBox.Show (
-			"This game uses Time without Loads (Game Time) as the main timing method.\n"+
-			"LiveSplit is currently set to show Real Time (Time with Loads).\n"+
-			"Would you like to set the timing method to Game Time? This will make verification easier",
-			"LiveSplit | Left 4 Dead 2",
-			MessageBoxButtons.YesNo,MessageBoxIcon.Question
-		);
-	
-		if (timingMessage == DialogResult.Yes)
-		{
-			timer.CurrentTimingMethod = TimingMethod.GameTime;
-		}
-	}
 }
 
 init
@@ -344,6 +330,10 @@ init
 
 start
 {
+	if (settings["AutomaticGameTime"])
+	{
+		timer.CurrentTimingMethod = TimingMethod.GameTime;
+	}
 	if (settings["foxyStart2"])
 	{
 		// Once we have control after a cutscene plays for at least 1 second, we're ready to start.
