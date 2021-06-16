@@ -1,14 +1,18 @@
 # L4D2-Autosplitter
 
-This is an updated version of bill_play3's autosplitter for Left 4 Dead 2.
+This is an updated/extended version of bill_play3's autosplitter for Left 4 Dead 2.
 
-This features multiple improvements over the original, such as:
-1. Support for The Last Stand update
-2. Support for an extra old version so people are more inclined to try out the original Cold Stream 😎
+Whenever I push an update here, it should be available within a few days directly in LiveSplit, through the Edit Splits screen.
+
+## Fixes/Additions
+1. Support for The Last Stand update (and continued support for the forseeable future)
+2. Support for an extra old version so people are more inclined to try out the original Cold Stream Beta 😎
 3. A fix for the autosplitter double splitting on certain finales (primarily the Parish)
 4. Some extra QoL fixes (such as the ability to split on the Cold Stream finale while playing RocketDude)
+5. Automatically forcing splits to Game Time on run start (with an option to disable this in the settings)
 
-To use this in LiveSplit, do the following:
+## How to use this if the latest version isn't integrated in LiveSplit yet
+Download the latest version from Releases on the right, then:
 
 1. Right click, hit edit splits
 2. Disable the integrated autosplitter if you have it active, and click OK
