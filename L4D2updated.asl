@@ -226,7 +226,7 @@ init
 	
 	print("Game main module size is " + modules.First().ModuleMemorySize.ToString());
 	
-	vars.version2213= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AEF8, 7);
+	vars.Version2213= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AEF8, 7);
 	vars.Version2207= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
 	vars.Version2203= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x69AF50, 7);
 	vars.Version2147= memory.ReadString(modules.Where(m => m.ModuleName == "engine.dll").First().BaseAddress + 0x694D28, 7);
