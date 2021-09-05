@@ -1,8 +1,8 @@
 # L4D2-Autosplitter
 
-This is an updated/extended version of bill_play3's autosplitter for Left 4 Dead 2.
+This is an updated/extended version of bill_play3's autosplitter for Left 4 Dead 2. (Additionally, this is where the autosplitter for L4D: Survivors lives 👀)
 
-Whenever I push an update here, it should be available within a few days directly in LiveSplit, through the Edit Splits screen.
+Whenever I push an update here, it should be available within a few days directly in LiveSplit, through the Edit Splits screen (for the L4D2 autosplitter, that is. Any changes to the L4D: Survivors autosplitter should be reflected instantly in Livesplit).
 
 ## Fixes/Additions
 1. Support for The Last Stand update (and continued support for the forseeable future)
