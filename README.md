@@ -1,4 +1,7 @@
-# L4D2-Autosplitter
+# READ:
+2838 was kind enough to overhaul the L4D2 autosplitter to use sigscanning instead of hard coded offsets for each version. From now on, there should never be any reason to come to this repo anymore, and latest release on this repo is outdated as a result. I implore you to just activate the autosplitter via edit splits, or you can download it from [here](https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2.asl).
+
+## Now, for the original readme:
 
 This is an updated/extended version of bill_play3's autosplitter for Left 4 Dead 2. (Additionally, this is where the autosplitter for L4D: Survivors lives 👀)
 
